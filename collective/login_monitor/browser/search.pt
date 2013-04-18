@@ -89,10 +89,7 @@
                     <option tal:repeat="group view/groups" 
                             tal:attributes="value group/id;
                                             selected python:request.get('group_id', '') and group['id'] and 'selected' or ''"
-                            
-                            tal:content="group/title"
-                            
-                            >Group title</option>
+                            tal:content="group/title">Group title</option>
                 </select>
             </div>
             <div class="field">

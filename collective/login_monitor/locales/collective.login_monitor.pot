@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-18 14:13+0000\n"
+"POT-Creation-Date: 2013-04-18 15:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,8 +29,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#. Default: "collective.login_monitor"
-#: ../browser/view.py:42
+#: ../browser/login_logger_macros.pt:9
 msgid "Logins count"
 msgstr ""
 
@@ -49,8 +48,7 @@ msgstr ""
 msgid "Store and monitor login access to your site"
 msgstr ""
 
-#. Default: "collective.login_monitor"
-#: ../browser/view.py:41
+#: ../browser/login_logger_macros.pt:8
 msgid "User id"
 msgstr ""
 
@@ -58,9 +56,19 @@ msgstr ""
 msgid "Users login monitor"
 msgstr ""
 
+#. Default: "Could not connect to the database engine. Please check your configuration"
+#: ../browser/view.py:134
+msgid "component_lookup_error"
+msgstr ""
+
 #. Default: "Search and monitor login operation taken by site users."
 #: ../browser/search.pt:25
 msgid "form_help"
+msgstr ""
+
+#. Default: "Search didn't return any result value"
+#: ../browser/login_logger_macros.pt:21
+msgid "no_results"
 msgstr ""
 
 #. Default: "Show accesses inside the following range"
@@ -71,6 +79,11 @@ msgstr ""
 #. Default: "Search or export logins"
 #: ../browser/search.pt:32
 msgid "search_legend"
+msgstr ""
+
+#. Default: "Search results"
+#: ../browser/login_logger_macros.pt:5
+msgid "search_results"
 msgstr ""
 
 #. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."

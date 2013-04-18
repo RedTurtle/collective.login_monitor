@@ -1,7 +1,9 @@
-<div metal:define-macro="search_results">
+<div metal:define-macro="search_results"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="collective.login_monitor">
      <tal:items tal:define="items view/search_results">
          <h2 i18n:translate="search_results">Search results</h2>
-         <table class="userLoginResults" tal:condition="items">
+         <table class="userLoginResults listing" tal:condition="view/last_query_size">
              <thead>
                    <th i18n:translate="">User id</th>
                    <th i18n:translate="">Logins count</th>
@@ -16,7 +18,7 @@
                    </tr>
              </tbody>
          </table>
-         <p tal:condition="not:items" i18n:translate="no_results">
+         <p tal:condition="not:view/last_query_size" i18n:translate="no_results">
             Search didn't return any result value
          </p>
      </tal:items>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-18 14:13+0000\n"
+"POT-Creation-Date: 2013-04-18 15:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -27,7 +27,7 @@ msgid "Group"
 msgstr "Gruppo"
 
 #. Default: "collective.login_monitor"
-#: ../browser/view.py:42
+#: ../browser/login_logger_macros.pt:9
 msgid "Logins count"
 msgstr "Conteggio login"
 
@@ -47,7 +47,7 @@ msgid "Store and monitor login access to your site"
 msgstr "Memorizza e controlla i login degli utenti al sito"
 
 #. Default: "collective.login_monitor"
-#: ../browser/view.py:41
+#: ../browser/login_logger_macros.pt:8
 msgid "User id"
 msgstr "Id utente"
 
@@ -55,10 +55,20 @@ msgstr "Id utente"
 msgid "Users login monitor"
 msgstr "Monitor login utenti"
 
+#. Default: "Could not connect to the database engine. Please check your configuration"
+#: ../browser/view.py:134
+msgid "component_lookup_error"
+msgstr "Non posso connettermi al database. Prego verificane la configurazione"
+
 #. Default: "Search and monitor login operation taken by site users."
 #: ../browser/search.pt:25
 msgid "form_help"
 msgstr "Cerca e controlla le operazioni di login intraprese dagli utenti del sito."
+
+#. Default: "Search didn't return any result value"
+#: ../browser/login_logger_macros.pt:21
+msgid "no_results"
+msgstr "La ricerca non ha portato a nessun risultato"
 
 #. Default: "Show accesses inside the following range"
 #: ../browser/search.pt:53
@@ -69,6 +79,11 @@ msgstr "Mostra gli accessi all'interno dell'intervallo seguente"
 #: ../browser/search.pt:32
 msgid "search_legend"
 msgstr "Cerca o esporta i login"
+
+#. Default: "Search results"
+#: ../browser/login_logger_macros.pt:5
+msgid "search_results"
+msgstr "Risultati della ricerca"
 
 #. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."
 #: ../browser/search.pt:84

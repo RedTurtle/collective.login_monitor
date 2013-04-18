@@ -6,11 +6,14 @@ from DateTime import DateTime
 from sqlalchemy import and_
 from sqlalchemy import func
 
+from zope.component.interfaces import ComponentLookupError
+
 from Products.CMFCore.utils import getToolByName
 
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile 
 
+from collective.login_monitor import messageFactory as _
 from collective.login_monitor import Session
 from collective.login_monitor.models import LoginRecord
 
@@ -33,13 +36,12 @@ class UsersLoginMonitorView(BrowserView):
     def _exportCSV(self):
         context = self.context
         translation_service = getToolByName(context,'translation_service')
-        _ = translation_service.utranslate
         response = self.request.response
         response.setHeader('Content-Type', 'text/csv')
         response.addHeader('Content-Disposition',
                            'attachment;filename=login-report-%s.csv' % datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-        response.write(("%s,%s\n" % (_(msgid=u"User id", domain="collective.login_monitor", context=context),
-                                     _(msgid=u"Logins count", domain="collective.login_monitor", context=context))).encode('utf-8'))
+        response.write(("%s,%s\n" % (translation_service.utranslate(msgid=u"User id", domain="collective.login_monitor", context=context),
+                                     translation_service.utranslate(msgid=u"Logins count", domain="collective.login_monitor", context=context))).encode('utf-8'))
         results = self.search_results()
         for row in results:
             response.write(("%s,%s\n" % (row.get('user_id'), row.get('login_count'))).encode('utf-8'))
@@ -76,8 +78,7 @@ class UsersLoginMonitorView(BrowserView):
 
     def _get_results(self, results):
         self.last_query_size = len(results)
-        for row in results:
-            yield {'user_id': row.user_id, 'login_count': row[1]}
+        return [{'user_id': row.user_id, 'login_count': row[1]} for row in results]
 
     def _query_users(self, query, site_id):
         results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id)) \
@@ -114,16 +115,24 @@ class UsersLoginMonitorView(BrowserView):
         self._prepare_interval()
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         user_id = self.request.form.get('user_id', '')
-        if user_id:
-            return self._query_users(user_id, portal.getId())
-        group_id = self.request.form.get('group_id', '')
-        if group_id:
-            pas = getToolByName(self.context, 'acl_users')
-            group = pas.getGroupById(group_id)
-            if not group:
-                group_users = []
-            else:
-                group_users = group.getGroupMemberIds()
-            return self._load_users(group_users, portal.getId())
-        # no filter; let's load ALL users
-        return self._all_users(portal.getId())
+        try:
+            if user_id:
+                return self._query_users(user_id, portal.getId())
+            group_id = self.request.form.get('group_id', '')
+            if group_id:
+                pas = getToolByName(self.context, 'acl_users')
+                group = pas.getGroupById(group_id)
+                if not group:
+                    group_users = []
+                else:
+                    group_users = group.getGroupMemberIds()
+                return self._load_users(group_users, portal.getId())
+            # no filter; let's load ALL users
+            return self._all_users(portal.getId())
+        except ComponentLookupError:
+            self.request.response.redirect("%s/%s" % (portal.absolute_url(), self.__name__))
+            portal.plone_utils.addPortalMessage(_('component_lookup_error',
+                                                  default=u"Could not connect to the database engine. "
+                                                          u"Please check your configuration"),
+                                                type="error")
+            return []
