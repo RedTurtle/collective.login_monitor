@@ -17,7 +17,7 @@ Keep reading for installation and configuration guide.
 How to use
 ==========
 
-After installation, any login done in your Plone will save to an external database an entry that store:
+After the installation, any login done in your Plone will save to an external database an entry that store:
 
 * user id
 * a timestamp
@@ -26,7 +26,11 @@ Then a new configuration panel can bhe found in the site configuration: "*Monito
 
 From this view you can query the database previously populated:
 
-xxx
+.. image:: http://blog.redturtle.it/pypi-images/collective.login_monitor/collective.login_monitor-0.2-01.png 
+   :alt: Control panel for login monitor
+
+You must limit the search inside a rande of dates, and optionally limiting users to members of a group.
+Results of the table displayed can be export to a CSV file.
 
 Multiple sites
 --------------
@@ -37,7 +41,7 @@ on different sites separated.
 Installation and configuration
 ==============================
 
-You must configure an access to an external DBMS.
+You must configure an access to an external DBMS. The name of the engine used must be ``plone_logins``.
 
 Follow an example based on `sqlite`__ (**not advised for production environment**).
 
