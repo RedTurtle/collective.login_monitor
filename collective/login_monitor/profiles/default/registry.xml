@@ -1,0 +1,9 @@
+<registry>
+    <records interface="collective.js.jqueryui.controlpanel.IJQueryUIPlugins">
+      <value key="ui_datepicker">True</value>
+    </records>
+    <records interface="collective.js.jqueryui.controlpanel.IJQueryUICSS">
+      <value key="css">True</value>
+      <value key="patch">True</value>
+    </records>
+</registry>

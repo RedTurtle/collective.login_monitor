@@ -1,0 +1,5 @@
+<layers>
+    <layer name="collective.login_monitor"
+           interface="collective.login_monitor.interfaces.ILoginMinitorLayer"
+		   remove="True" />
+</layers>

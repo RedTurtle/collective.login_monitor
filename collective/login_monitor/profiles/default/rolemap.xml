@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="collective.login_monitor: View logins"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+    </permission>
+  </permissions>
+</rolemap>

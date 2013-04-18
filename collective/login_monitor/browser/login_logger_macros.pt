@@ -1,0 +1,24 @@
+<div metal:define-macro="search_results">
+     <tal:items tal:define="items view/search_results">
+         <h2 i18n:translate="search_results">Search results</h2>
+         <table class="userLoginResults" tal:condition="items">
+             <thead>
+                   <th i18n:translate="">User id</th>
+                   <th i18n:translate="">Logins count</th>
+             </thead>
+             <tbody>
+                   <tr tal:repeat="item items">
+                       <td><a href=""
+                              tal:content="item/user_id"
+                              tal:attributes="href string:${context/absolute_url}/author/${item/user_id}">John Smith</a>
+					   </td>
+                       <td tal:content="item/login_count" />
+                   </tr>
+             </tbody>
+         </table>
+         <p tal:condition="not:items" i18n:translate="no_results">
+            Search didn't return any result value
+         </p>
+     </tal:items>
+</div>
+

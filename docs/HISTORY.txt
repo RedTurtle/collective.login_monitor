@@ -1,0 +1,17 @@
+Changelog
+=========
+
+0.2 (unreleased)
+----------------
+
+First public release
+
+* old code totally refactored (removed ``sqldict`` for a pure ``SQLAlchemy`` approach)
+  [keul]
+* i18n support
+  [keul]
+
+0.1 (unreleased)
+----------------
+
+- Initial release

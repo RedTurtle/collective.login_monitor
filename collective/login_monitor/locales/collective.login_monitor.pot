@@ -1,0 +1,80 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-04-18 14:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.login_monitor\n"
+
+#: ../browser/search.pt:88
+msgid "All the groups"
+msgstr ""
+
+#: ../browser/search.pt:100
+msgid "Export to CSV"
+msgstr ""
+
+#: ../browser/search.pt:83
+msgid "Group"
+msgstr ""
+
+#. Default: "collective.login_monitor"
+#: ../browser/view.py:42
+msgid "Logins count"
+msgstr ""
+
+#: ../profiles/default/controlpanel.xml
+msgid "Monitor user logins"
+msgstr ""
+
+#: ../browser/search.pt:52
+msgid "Period"
+msgstr ""
+
+#: ../browser/search.pt:99
+msgid "Search"
+msgstr ""
+
+msgid "Store and monitor login access to your site"
+msgstr ""
+
+#. Default: "collective.login_monitor"
+#: ../browser/view.py:41
+msgid "User id"
+msgstr ""
+
+#: ../browser/search.pt:23
+msgid "Users login monitor"
+msgstr ""
+
+#. Default: "Search and monitor login operation taken by site users."
+#: ../browser/search.pt:25
+msgid "form_help"
+msgstr ""
+
+#. Default: "Show accesses inside the following range"
+#: ../browser/search.pt:53
+msgid "period_help"
+msgstr ""
+
+#. Default: "Search or export logins"
+#: ../browser/search.pt:32
+msgid "search_legend"
+msgstr ""
+
+#. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."
+#: ../browser/search.pt:84
+msgid "show_groups_help"
+msgstr ""
+

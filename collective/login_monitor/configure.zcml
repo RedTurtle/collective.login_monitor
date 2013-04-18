@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.login_monitor">
+
+   <five:registerPackage package="." />
+   <i18n:registerTranslations directory="locales" />
+
+   <permission
+      id="collective.login_monitor.MonitorUserPermission"
+      title="collective.login_monitor: View logins"
+      />
+
+   <subscriber
+      for="*
+           Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+      handler=".event.register_event"
+    />
+
+   <include package=".browser" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.login_monitor"
+      directory="profiles/default"
+      description="Store and monitor login access to your site"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.login_monitor: uninstall"
+      directory="profiles/uninstall"
+      description="Remove collective.login_monitor"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+
+</configure>

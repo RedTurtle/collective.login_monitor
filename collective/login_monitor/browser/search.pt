@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="collective.login_monitor">
+        
+<body>
+    
+    <metal:main fill-slot="prefs_configlet_main">
+    <tal:main-macro metal:define-macro="controlpanel">
+                                    
+     <div id="users-login-monitor">
+         
+     <a href=""
+       id="setup-link"
+       tal:attributes="href string:$portal_url/plone_control_panel"
+       i18n:domain="plone"
+       i18n:translate="">
+        Site Setup
+     </a> &rsaquo;
+        
+     <h1 class="documentFirstHeading" i18n:translate="">Users login monitor</h1>
+     
+     <p class="documentDescription" i18n:translate="form_help">
+         Search and monitor login operation taken by site users.
+     </p>
+     
+     <form id="login-logger-form" class="visualNoPrint" action="users-login-monitor" method="post"
+           tal:attributes="action string:${context/absolute_url}/users-login-monitor">
+        <fieldset>
+            <legend i18n:translate="search_legend">Search or export logins</legend>
+            <input type="hidden" name="search" value="1" />
+            <script type="text/javascript">
+            <!--
+            (function($) {
+                $(document).ready(function() {
+                
+                    var updateDate = function(date) {
+                        var d = $(this).datepicker('getDate');
+                        $('#'+this.id+'_date').val(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
+                    };
+                
+                    $("#start").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy' });
+                    $("#end").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy'});
+
+                });
+            })(jQuery);
+            //-->
+            </script>
+            <div class="field">
+                <label for="start" i18n:translate="">Period</label>
+                <div class="formHelp" i18n:translate="period_help">
+                    Show accesses inside the following range 
+                </div>
+                
+                <input tal:attributes="value python:view.default_start_date(canonical=True)"
+                       type="hidden"
+                       id="start_date"
+                       name="start_date"
+                       value=""
+                       />
+                <input tal:attributes="value request/start|view/default_start_date" type="text"
+                       id="start"
+                       name="start"
+                       size="10"
+                       maxlength="10"
+                       />
+                <input tal:attributes="value python:view.default_end_date(canonical=True)"
+                       type="hidden"
+                       id="end_date"
+                       name="end_date"
+                       value=""
+                       />
+                <input tal:attributes="value request/end|view/default_end_date" type="text"
+                       id="end"
+                       name="end"
+                       size="10"
+                       maxlength="10"
+                       />
+            </div>
+            <div class="field">
+                <label for="group_id" i18n:translate="">Group</label>
+                <div class="formHelp" i18n:translate="show_groups_help">
+                    Show users from selected group. Keep &quot;All the groups&quot; to not apply any filter.
+                </div>
+                <select id="group_id" name="group_id">
+                    <option value="" i18n:translate="">All the groups</option>
+                    <option tal:repeat="group view/groups" 
+                            tal:attributes="value group/id;
+                                            selected python:request.get('group_id', '') and group['id'] and 'selected' or ''"
+                            
+                            tal:content="group/title"
+                            
+                            >Group title</option>
+                </select>
+            </div>
+            <div class="field">
+                <input name="submit" type="submit" class="context" i18n:attributes="value" value="Search" />
+                <input name="export" type="submit" class="context allowMultiSubmit" i18n:attributes="value" value="Export to CSV" />
+            </div>
+        </fieldset>
+     </form>
+
+     <tal:searching tal:condition="request/submit|nothing">
+        <tal:results metal:use-macro="here/login-logger-macros/search_results" />
+     </tal:searching>
+    
+     <div tal:replace="structure provider:plone.belowcontentbody" />
+
+     </div>
+    </tal:main-macro>
+    </metal:main>
+
+  </body>
+</html>

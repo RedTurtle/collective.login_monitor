@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="collective.login_monitor">
+
+    <configlet
+        title="Monitor user logins"
+        action_id="users-login-search"
+        appId="collective.login_monitor"
+        category="Products"
+        condition_expr=""
+        icon_expr="string:${portal_url}/group.gif"
+        url_expr="string:${portal_url}/@@users-login-monitor"
+        visible="True"
+        i18n:attributes="title">
+            <permission>collective.login_monitor: View logins</permission>
+    </configlet>
+
+</object>

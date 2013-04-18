@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-04-18 14:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
+"Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.login_monitor\n"
+
+#: ../browser/search.pt:88
+msgid "All the groups"
+msgstr "Tutti i gruppi"
+
+#: ../browser/search.pt:100
+msgid "Export to CSV"
+msgstr "Esporta in CSV"
+
+#: ../browser/search.pt:83
+msgid "Group"
+msgstr "Gruppo"
+
+#. Default: "collective.login_monitor"
+#: ../browser/view.py:42
+msgid "Logins count"
+msgstr "Conteggio login"
+
+#: ../profiles/default/controlpanel.xml
+msgid "Monitor user logins"
+msgstr "Monitor login utenti"
+
+#: ../browser/search.pt:52
+msgid "Period"
+msgstr "Periodo"
+
+#: ../browser/search.pt:99
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Store and monitor login access to your site"
+msgstr "Memorizza e controlla i login degli utenti al sito"
+
+#. Default: "collective.login_monitor"
+#: ../browser/view.py:41
+msgid "User id"
+msgstr "Id utente"
+
+#: ../browser/search.pt:23
+msgid "Users login monitor"
+msgstr "Monitor login utenti"
+
+#. Default: "Search and monitor login operation taken by site users."
+#: ../browser/search.pt:25
+msgid "form_help"
+msgstr "Cerca e controlla le operazioni di login intraprese dagli utenti del sito."
+
+#. Default: "Show accesses inside the following range"
+#: ../browser/search.pt:53
+msgid "period_help"
+msgstr "Mostra gli accessi all'interno dell'intervallo seguente"
+
+#. Default: "Search or export logins"
+#: ../browser/search.pt:32
+msgid "search_legend"
+msgstr "Cerca o esporta i login"
+
+#. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."
+#: ../browser/search.pt:84
+msgid "show_groups_help"
+msgstr "Mostra gli utenti del gruppo selezionato. Mantieni \"tutti i gruppi\" per non applicare filtri."
+
