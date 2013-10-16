@@ -47,7 +47,7 @@ Follow an example based on `sqlite`__ (**not advised for production environment*
 
 __ http://www.sqlite.org/
 
-Add ``rt.lastmodifier`` to your buildout, then provide a SQLAlchemy connection string:
+Add ``collective.login_monitor`` to your buildout, then provide a SQLAlchemy connection string:
 
 .. code-block:: ini
 
