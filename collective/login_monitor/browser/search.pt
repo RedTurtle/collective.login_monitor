@@ -41,8 +41,8 @@
                         $('#'+this.id+'_date').val(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
                     };
                 
-                    $("#start").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy' });
-                    $("#end").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy'});
+                    $("#start").datepicker({showOn: 'button', buttonImage: 'popup_calendar.png', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy' });
+                    $("#end").datepicker({showOn: 'button', buttonImage: 'popup_calendar.png', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy'});
 
                 });
             })(jQuery);

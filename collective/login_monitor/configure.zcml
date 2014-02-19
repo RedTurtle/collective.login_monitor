@@ -34,7 +34,14 @@
       directory="profiles/uninstall"
       description="Remove collective.login_monitor"
       provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+  <genericsetup:upgradeStep
+      source="*"
+      destination="1100"
+      title="Update control panel action icon"
+      description="Updates URL for action icon in control panel."
+      profile="collective.login_monitor:default"
+      handler=".upgrades.upgrade_1000_to_1100"
       />
-
 
 </configure>
