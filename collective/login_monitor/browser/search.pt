@@ -82,7 +82,7 @@
             <div class="field">
                 <label for="group_id" i18n:translate="">Group</label>
                 <div class="formHelp" i18n:translate="show_groups_help">
-                    Show users from selected group. Keep &quot;All the groups&quot; to not apply any filter.
+                    Show users from the selected group. Select &quot;All the groups&quot; to apply no filters.
                 </div>
                 <select id="group_id" name="group_id">
                     <option value="" i18n:translate="">All the groups</option>

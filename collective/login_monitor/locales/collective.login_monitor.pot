@@ -86,7 +86,7 @@ msgstr ""
 msgid "search_results"
 msgstr ""
 
-#. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."
+#. Default: "Show users from the selected group. Select \"All the groups\" to apply no filters."
 #: ../browser/search.pt:84
 msgid "show_groups_help"
 msgstr ""

@@ -4,6 +4,8 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- Clarify description for group selection field.
+  [davidjb]
 - Minor grammar update for column headings on search page and export.
   [davidjb]
 - Change icon URLs to use PNG format rather than deprecated GIF images.
