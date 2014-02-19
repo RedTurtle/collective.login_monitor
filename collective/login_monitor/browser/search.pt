@@ -88,7 +88,7 @@
                     <option value="" i18n:translate="">All the groups</option>
                     <option tal:repeat="group view/groups" 
                             tal:attributes="value group/id;
-                                            selected python:request.get('group_id', '') and group['id'] and 'selected' or ''"
+                                            selected python:'selected' if request.get('group_id', '') == group['id'] else None"
                             tal:content="group/title">Group title</option>
                 </select>
             </div>
