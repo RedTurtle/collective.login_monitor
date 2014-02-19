@@ -40,8 +40,8 @@ class UsersLoginMonitorView(BrowserView):
         response.setHeader('Content-Type', 'text/csv')
         response.addHeader('Content-Disposition',
                            'attachment;filename=login-report-%s.csv' % datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-        response.write(("%s,%s\n" % (translation_service.utranslate(msgid=u"User id", domain="collective.login_monitor", context=context),
-                                     translation_service.utranslate(msgid=u"Logins count", domain="collective.login_monitor", context=context))).encode('utf-8'))
+        response.write(("%s,%s\n" % (translation_service.utranslate(msgid=u"User ID", domain="collective.login_monitor", context=context),
+                                     translation_service.utranslate(msgid=u"Login count", domain="collective.login_monitor", context=context))).encode('utf-8'))
         results = self.search_results()
         for row in results:
             response.write(("%s,%s\n" % (row.get('user_id'), row.get('login_count'))).encode('utf-8'))

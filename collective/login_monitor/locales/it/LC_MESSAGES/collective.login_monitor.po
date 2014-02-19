@@ -28,7 +28,7 @@ msgstr "Gruppo"
 
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:9
-msgid "Logins count"
+msgid "Login count"
 msgstr "Conteggio login"
 
 #: ../profiles/default/controlpanel.xml
@@ -48,7 +48,7 @@ msgstr "Memorizza e controlla i login degli utenti al sito"
 
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:8
-msgid "User id"
+msgid "User ID"
 msgstr "Id utente"
 
 #: ../browser/search.pt:23
