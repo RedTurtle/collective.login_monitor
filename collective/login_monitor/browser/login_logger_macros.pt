@@ -6,6 +6,8 @@
          <table class="userLoginResults listing" tal:condition="view/last_query_size">
              <thead>
                    <th i18n:translate="">User ID</th>
+                   <th i18n:translate="">Full Name</th>
+                   <th i18n:translate="">E-mail</th>
                    <th i18n:translate="">Login count</th>
              </thead>
              <tbody>
@@ -14,6 +16,8 @@
                               tal:content="item/user_id"
                               tal:attributes="href string:${context/absolute_url}/author/${item/user_id}">John Smith</a>
 					   </td>
+		       <td tal:content="item/user_fullname" />
+		       <td tal:content="item/user_email" />
                        <td tal:content="item/login_count" />
                    </tr>
              </tbody>

@@ -34,17 +34,27 @@ class UsersLoginMonitorView(BrowserView):
         return self.index()
 
     def _exportCSV(self):
+        translate = lambda text: translation_service.utranslate(
+            msgid=text,
+            domain="collective.login_monitor",
+            context=context)
+
         context = self.context
         translation_service = getToolByName(context,'translation_service')
         response = self.request.response
         response.setHeader('Content-Type', 'text/csv')
         response.addHeader('Content-Disposition',
                            'attachment;filename=login-report-%s.csv' % datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-        response.write(("%s,%s\n" % (translation_service.utranslate(msgid=u"User ID", domain="collective.login_monitor", context=context),
-                                     translation_service.utranslate(msgid=u"Login count", domain="collective.login_monitor", context=context))).encode('utf-8'))
+        response.write(("%s,%s,%s,%s\n" % (translate(u"User ID"),
+                                           translate(u"Full Name"),
+                                           translate(u"E-mail"),
+                                           translate(u"Login count"))).encode('utf-8'))
         results = self.search_results()
         for row in results:
-            response.write(("%s,%s\n" % (row.get('user_id'), row.get('login_count'))).encode('utf-8'))
+            response.write(("%s,%s,%s,%s\n" % (row.get('user_id'),
+                                         row.get('user_fullname'),
+                                         row.get('user_email'),
+                                         row.get('login_count'))).encode('utf-8'))
 
     def default_start_date(self, canonical=False):
         today = date.today()
@@ -77,8 +87,19 @@ class UsersLoginMonitorView(BrowserView):
                 yield group
 
     def _get_results(self, results):
+        mt = getToolByName(self.context, 'portal_membership')
         self.last_query_size = len(results)
-        return [{'user_id': row.user_id, 'login_count': row[1]} for row in results]
+
+        processed = []
+        for row in results:
+            result = {'user_id': row.user_id,
+                      'login_count': row[1]}
+            member = mt.getMemberById(row.user_id)
+            if member:
+                result['user_fullname'] = member.getProperty('fullname')
+                result['user_email'] = member.getProperty('email')
+            processed.append(result)
+        return processed
 
     def _query_users(self, query, site_id):
         results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id)) \

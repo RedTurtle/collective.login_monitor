@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-18 15:13+0000\n"
+"POT-Creation-Date: 2014-02-20 01:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,23 @@ msgstr ""
 msgid "All the groups"
 msgstr ""
 
-#: ../browser/search.pt:100
+#: ../browser/login_logger_macros.pt:10
+msgid "E-mail"
+msgstr ""
+
+#: ../browser/search.pt:97
 msgid "Export to CSV"
+msgstr ""
+
+#: ../browser/login_logger_macros.pt:9
+msgid "Full Name"
 msgstr ""
 
 #: ../browser/search.pt:83
 msgid "Group"
 msgstr ""
 
-#: ../browser/login_logger_macros.pt:9
+#: ../browser/login_logger_macros.pt:11
 msgid "Login count"
 msgstr ""
 
@@ -41,7 +49,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: ../browser/search.pt:99
+#: ../browser/search.pt:96
 msgid "Search"
 msgstr ""
 
@@ -57,7 +65,7 @@ msgid "Users login monitor"
 msgstr ""
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:134
+#: ../browser/view.py:155
 msgid "component_lookup_error"
 msgstr ""
 
@@ -67,7 +75,7 @@ msgid "form_help"
 msgstr ""
 
 #. Default: "Search didn't return any result value"
-#: ../browser/login_logger_macros.pt:21
+#: ../browser/login_logger_macros.pt:25
 msgid "no_results"
 msgstr ""
 
