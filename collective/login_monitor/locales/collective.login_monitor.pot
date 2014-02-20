@@ -30,7 +30,7 @@ msgid "Group"
 msgstr ""
 
 #: ../browser/login_logger_macros.pt:9
-msgid "Logins count"
+msgid "Login count"
 msgstr ""
 
 #: ../profiles/default/controlpanel.xml
@@ -49,7 +49,7 @@ msgid "Store and monitor login access to your site"
 msgstr ""
 
 #: ../browser/login_logger_macros.pt:8
-msgid "User id"
+msgid "User ID"
 msgstr ""
 
 #: ../browser/search.pt:23
@@ -86,7 +86,7 @@ msgstr ""
 msgid "search_results"
 msgstr ""
 
-#. Default: "Show users from selected group. Keep \"All the groups\" to not apply any filter."
+#. Default: "Show users from the selected group. Select \"All the groups\" to apply no filters."
 #: ../browser/search.pt:84
 msgid "show_groups_help"
 msgstr ""

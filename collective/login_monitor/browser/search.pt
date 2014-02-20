@@ -41,8 +41,8 @@
                         $('#'+this.id+'_date').val(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
                     };
                 
-                    $("#start").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy' });
-                    $("#end").datepicker({showOn: 'button', buttonImage: 'popup_calendar.gif', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy'});
+                    $("#start").datepicker({showOn: 'button', buttonImage: 'popup_calendar.png', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy' });
+                    $("#end").datepicker({showOn: 'button', buttonImage: 'popup_calendar.png', buttonImageOnly: true, onSelect: updateDate, dateFormat: 'dd/mm/yy'});
 
                 });
             })(jQuery);
@@ -82,13 +82,13 @@
             <div class="field">
                 <label for="group_id" i18n:translate="">Group</label>
                 <div class="formHelp" i18n:translate="show_groups_help">
-                    Show users from selected group. Keep &quot;All the groups&quot; to not apply any filter.
+                    Show users from the selected group. Select &quot;All the groups&quot; to apply no filters.
                 </div>
                 <select id="group_id" name="group_id">
                     <option value="" i18n:translate="">All the groups</option>
                     <option tal:repeat="group view/groups" 
                             tal:attributes="value group/id;
-                                            selected python:request.get('group_id', '') and group['id'] and 'selected' or ''"
+                                            selected python:'selected' if request.get('group_id', '') == group['id'] else None"
                             tal:content="group/title">Group title</option>
                 </select>
             </div>

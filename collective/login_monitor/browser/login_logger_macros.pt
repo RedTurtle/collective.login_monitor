@@ -5,8 +5,8 @@
          <h2 i18n:translate="search_results">Search results</h2>
          <table class="userLoginResults listing" tal:condition="view/last_query_size">
              <thead>
-                   <th i18n:translate="">User id</th>
-                   <th i18n:translate="">Logins count</th>
+                   <th i18n:translate="">User ID</th>
+                   <th i18n:translate="">Login count</th>
              </thead>
              <tbody>
                    <tr tal:repeat="item items">

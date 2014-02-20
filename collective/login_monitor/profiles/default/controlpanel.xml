@@ -9,7 +9,7 @@
         appId="collective.login_monitor"
         category="Products"
         condition_expr=""
-        icon_expr="string:${portal_url}/group.gif"
+        icon_expr="string:${portal_url}/group.png"
         url_expr="string:${portal_url}/@@users-login-monitor"
         visible="True"
         i18n:attributes="title">
