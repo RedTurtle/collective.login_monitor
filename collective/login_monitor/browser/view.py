@@ -87,17 +87,19 @@ class UsersLoginMonitorView(BrowserView):
                 yield group
 
     def _get_results(self, results):
-        mt = getToolByName(self.context, 'portal_membership')
+        acl_users = getToolByName(self.context, 'acl_users')
         self.last_query_size = len(results)
 
         processed = []
         for row in results:
             result = {'user_id': row.user_id,
-                      'login_count': row[1]}
-            member = mt.getMemberById(row.user_id)
-            if member:
-                result['user_fullname'] = member.getProperty('fullname')
-                result['user_email'] = member.getProperty('email')
+                      'login_count': row[1],
+                      'user_fullname': None,
+                      'user_email': None}
+            user = acl_users.getUserById(row.user_id)
+            if user:
+                result['user_fullname'] = user.getProperty('fullname')
+                result['user_email'] = user.getProperty('email')
             processed.append(result)
         return processed
 
