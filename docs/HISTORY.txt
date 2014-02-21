@@ -4,6 +4,8 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+Dropped Plone 3 compatibility
+
 - Add Full Name and E-mail columns to the search results and CSV output.
   [davidjb]
 - Fix selected Group logic on search form.
@@ -14,7 +16,6 @@ Changelog
   [davidjb]
 - Change icon URLs to use PNG format rather than deprecated GIF images.
   [davidjb]
-
 
 0.2 (2013-04-18)
 ----------------
