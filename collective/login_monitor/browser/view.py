@@ -96,6 +96,8 @@ class UsersLoginMonitorView(BrowserView):
                       'login_count': row[1],
                       'user_fullname': None,
                       'user_email': None}
+            # unluckily searchUsers is not returnig the email address
+            #user = acl_users.searchUsers(login=row.user_id, exact_match=True)
             user = acl_users.getUserById(row.user_id)
             if user:
                 result['user_fullname'] = user.getProperty('fullname')
