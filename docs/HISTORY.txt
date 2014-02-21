@@ -4,6 +4,8 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- Add Full Name and E-mail columns to the search results and CSV output.
+  [davidjb]
 - Fix selected Group logic on search form.
   [davidjb]
 - Clarify description for group selection field.
