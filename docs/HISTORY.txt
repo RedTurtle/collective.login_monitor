@@ -16,6 +16,7 @@ Dropped Plone 3 compatibility
   [davidjb]
 - Change icon URLs to use PNG format rather than deprecated GIF images.
   [davidjb]
+- Add exception handling in the event, if no db is configured [cekk]
 
 0.2 (2013-04-18)
 ----------------
