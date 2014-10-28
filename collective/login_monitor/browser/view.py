@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from datetime import date, datetime, timedelta
-from DateTime import DateTime
-
 from sqlalchemy import and_
 from sqlalchemy import func
-
 from zope.component.interfaces import ComponentLookupError
-
 from Products.CMFCore.utils import getToolByName
-
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile 
-
 from collective.login_monitor import messageFactory as _
 from collective.login_monitor import Session
 from collective.login_monitor.models import LoginRecord
