@@ -53,7 +53,7 @@ class UsersLoginMonitorView(BrowserView):
         today = date.today()
         monthago = today - timedelta(28)
         i = 0
-        while ((not today.day == monthago.day) or i>10):
+        while today.day > monthago.day and i<3:
             i+=1
             monthago-=timedelta(1)
         if canonical:

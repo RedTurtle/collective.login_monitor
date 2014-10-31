@@ -4,7 +4,8 @@ Changelog
 0.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed date error in that will be raised in some cases
+  [keul]
 
 
 0.3 (2014-10-28)
