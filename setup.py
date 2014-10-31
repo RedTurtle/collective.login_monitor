@@ -7,7 +7,7 @@ setup(name='collective.login_monitor',
       version=version,
       description="Store and monitor login access to your Plone site",
       long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+                       open(os.path.join("docs", "HISTORY.rst")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
