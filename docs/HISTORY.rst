@@ -6,7 +6,9 @@ Changelog
 
 - Fixed date error in that will be raised in some cases
   [keul]
-
+- React to a wider range of problems when database connection
+  is not working
+  [keul]
 
 0.3 (2014-10-28)
 ----------------

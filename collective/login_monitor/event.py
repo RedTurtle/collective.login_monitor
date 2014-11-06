@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from datetime import datetime
-
-from sqlalchemy import and_
-
-from zope.component import getSiteManager
-
+from ZODB.POSException import ConflictError
 from collective.login_monitor import Session, logger
 from collective.login_monitor.models import User, LoginRecord
+from datetime import datetime
+from sqlalchemy import and_
+from zope.component import getSiteManager
 from zope.component.interfaces import ComponentLookupError
+import traceback
 
 
 def register_event(user, event):
@@ -27,5 +26,8 @@ def register_event(user, event):
         timestamp = datetime.now()
         record = LoginRecord(user_id.decode('utf-8'), site_id.decode('utf-8'), timestamp)
         Session.add(record)
-    except ComponentLookupError:
-        logger.warning("Unable to store login informations. Db not set.")
+    except ConflictError:
+        raise
+    except Exception:
+        logger.error("Unable to store login informations")
+        print traceback.format_exc()

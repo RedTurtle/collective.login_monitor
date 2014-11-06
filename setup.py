@@ -29,9 +29,10 @@ setup(name='collective.login_monitor',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'z3c.saconfig',
+          'Products.CMFPlone',
           'SQLAlchemy',
           'collective.js.jqueryui',
+          'z3c.saconfig',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
