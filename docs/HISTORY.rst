@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.1 (unreleased)
+0.3.1 (2014-11-06)
 ------------------
 
 - Fixed date error in that will be raised in some cases
