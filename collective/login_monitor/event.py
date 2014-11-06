@@ -6,7 +6,6 @@ from collective.login_monitor.models import User, LoginRecord
 from datetime import datetime
 from sqlalchemy import and_
 from zope.component import getSiteManager
-from zope.component.interfaces import ComponentLookupError
 import traceback
 
 

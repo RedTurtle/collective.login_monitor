@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import schema, types
-from sqlalchemy import Table, ForeignKey, Column
+from sqlalchemy import Table, ForeignKey
 from sqlalchemy import PrimaryKeyConstraint
 
 from collective.login_monitor import ORMBase
