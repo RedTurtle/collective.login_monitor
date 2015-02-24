@@ -9,6 +9,7 @@
                    <th i18n:translate="">Full Name</th>
                    <th i18n:translate="">E-mail</th>
                    <th i18n:translate="">Login count</th>
+				   <th i18n:translate="">Last login date</th>
              </thead>
              <tbody>
                    <tr tal:repeat="item items">
@@ -22,7 +23,8 @@
                               tal:attributes="href string:mailto:${item/user_email}"
                               tal:content="item/user_email" />
                         </td>
-                       <td style="text-align:right" tal:content="item/login_count" />
+                       <td style="text-align:right" tal:content="item/login_count">5</td>
+					   <td tal:content="python:view.toLocalizedTime(item.get('last_login_date'))">2015-02-24</td>
                    </tr>
              </tbody>
          </table>

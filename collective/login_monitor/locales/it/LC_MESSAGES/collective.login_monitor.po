@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-02-20 01:59+0000\n"
+"POT-Creation-Date: 2015-02-24 13:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -28,11 +28,15 @@ msgstr "Esporta in CSV"
 
 #: ../browser/login_logger_macros.pt:9
 msgid "Full Name"
-msgstr "Nome e cognome"
+msgstr "Nome"
 
 #: ../browser/search.pt:83
 msgid "Group"
 msgstr "Gruppo"
+
+#: ../browser/login_logger_macros.pt:12
+msgid "Last login date"
+msgstr "Ultimo login"
 
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:11
@@ -64,7 +68,7 @@ msgid "Users login monitor"
 msgstr "Monitor login utenti"
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:155
+#: ../browser/view.py:159
 msgid "component_lookup_error"
 msgstr "Non posso connettermi al database. Prego verificane la configurazione"
 
@@ -74,7 +78,7 @@ msgid "form_help"
 msgstr "Cerca e controlla le operazioni di login intraprese dagli utenti del sito."
 
 #. Default: "Search didn't return any result value"
-#: ../browser/login_logger_macros.pt:25
+#: ../browser/login_logger_macros.pt:31
 msgid "no_results"
 msgstr "La ricerca non ha portato a nessun risultato"
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-02-20 01:59+0000\n"
+"POT-Creation-Date: 2015-02-24 13:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,10 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
+#: ../browser/login_logger_macros.pt:12
+msgid "Last login date"
+msgstr ""
+
 #: ../browser/login_logger_macros.pt:11
 msgid "Login count"
 msgstr ""
@@ -65,7 +69,7 @@ msgid "Users login monitor"
 msgstr ""
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:155
+#: ../browser/view.py:159
 msgid "component_lookup_error"
 msgstr ""
 
@@ -75,7 +79,7 @@ msgid "form_help"
 msgstr ""
 
 #. Default: "Search didn't return any result value"
-#: ../browser/login_logger_macros.pt:25
+#: ../browser/login_logger_macros.pt:31
 msgid "no_results"
 msgstr ""
 

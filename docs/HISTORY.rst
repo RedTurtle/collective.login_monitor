@@ -4,9 +4,10 @@ Changelog
 0.4 (unreleased)
 ----------------
 
+- Added new information about last login date of the user
+  [keul]
 - Fixed errors in foreign key definition on schema models
   [keul]
-
 
 0.3.1 (2014-11-06)
 ------------------

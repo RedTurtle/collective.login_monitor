@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from collective.login_monitor import Session
+from collective.login_monitor import messageFactory as _
+from collective.login_monitor.models import LoginRecord
 from datetime import date, datetime, timedelta
 from sqlalchemy import and_
 from sqlalchemy import func
+from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
-from collective.login_monitor import messageFactory as _
-from collective.login_monitor import Session
-from collective.login_monitor.models import LoginRecord
 
 class UsersLoginMonitorView(BrowserView):
     
@@ -38,16 +39,18 @@ class UsersLoginMonitorView(BrowserView):
         response.setHeader('Content-Type', 'text/csv')
         response.addHeader('Content-Disposition',
                            'attachment;filename=login-report-%s.csv' % datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-        response.write(("%s,%s,%s,%s\n" % (translate(u"User ID"),
-                                           translate(u"Full Name"),
-                                           translate(u"E-mail"),
-                                           translate(u"Login count"))).encode('utf-8'))
+        response.write(("%s,%s,%s,%s,%s\n" % (translate(u"User ID"),
+                                              translate(u"Full Name"),
+                                              translate(u"E-mail"),
+                                              translate(u"Login count"),
+                                              translate(u"Last login date"))).encode('utf-8'))
         results = self.search_results()
         for row in results:
-            response.write(("%s,%s,%s,%s\n" % (row.get('user_id'),
-                                         row.get('user_fullname'),
-                                         row.get('user_email'),
-                                         row.get('login_count'))).encode('utf-8'))
+            response.write(("%s,%s,%s,%s,%s\n" % (row.get('user_id'),
+                                                  row.get('user_fullname'),
+                                                  row.get('user_email'),
+                                                  row.get('login_count'),
+                                                  row.get('last_login_date'))).encode('utf-8'))
 
     def default_start_date(self, canonical=False):
         today = date.today()
@@ -88,7 +91,8 @@ class UsersLoginMonitorView(BrowserView):
             result = {'user_id': row.user_id,
                       'login_count': row[1],
                       'user_fullname': None,
-                      'user_email': None}
+                      'user_email': None,
+                      'last_login_date': row[2]}
             # unluckily searchUsers is not returnig the email address
             #user = acl_users.searchUsers(login=row.user_id, exact_match=True)
             user = acl_users.getUserById(row.user_id)
@@ -99,7 +103,8 @@ class UsersLoginMonitorView(BrowserView):
         return processed
 
     def _query_users(self, query, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id)) \
+        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                func.max(LoginRecord.timestamp)) \
                 .filter(and_(LoginRecord.user_id.startswith(query),
                              LoginRecord.plone_site_id==site_id,
                              LoginRecord.timestamp>=self._start,
@@ -107,7 +112,8 @@ class UsersLoginMonitorView(BrowserView):
         return self._get_results(results)
 
     def _load_users(self, user_ids, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id)) \
+        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                func.max(LoginRecord.timestamp)) \
                 .filter(and_(LoginRecord.user_id.in_(user_ids),
                              LoginRecord.plone_site_id==site_id,
                              LoginRecord.timestamp>=self._start,
@@ -115,10 +121,13 @@ class UsersLoginMonitorView(BrowserView):
         return self._get_results(results)
 
     def _all_users(self, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id)) \
+        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                func.max(LoginRecord.timestamp)) \
                 .filter(and_(LoginRecord.plone_site_id==site_id,
                              LoginRecord.timestamp>=self._start,
-                             LoginRecord.timestamp<=self._end)).group_by(LoginRecord.user_id).order_by(LoginRecord.user_id).all()
+                             LoginRecord.timestamp<=self._end)).group_by(
+                                 LoginRecord.user_id,
+                                 LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
         return self._get_results(results)
 
     def _prepare_interval(self):
@@ -154,3 +163,8 @@ class UsersLoginMonitorView(BrowserView):
                                                           u"Please check your configuration"),
                                                 type="error")
             return []
+
+    def toLocalizedTime(self, date):
+        ploneview = getMultiAdapter((self.context, self.request), name=u'plone')
+        return ploneview.toLocalizedTime(date, long_format=True)
+    

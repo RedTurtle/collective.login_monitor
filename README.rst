@@ -7,7 +7,7 @@ Introduction
 ============
 
 This Plone add-on is based on `z3c.saconfig`__ and `SQLAlchemy`__, and can't provide any new feature to Plone
-without a propert configuration.
+without a proper configuration.
 
 __ http://pypi.python.org/pypi/z3c.saconfig
 __ http://sqlalchemy.org/
@@ -47,9 +47,7 @@ Follow an example based on `sqlite`__ (**not advised for production environment*
 
 __ http://www.sqlite.org/
 
-Add ``collective.login_monitor`` to your buildout, then provide a SQLAlchemy connection string:
-
-.. code-block:: ini
+Add ``collective.login_monitor`` to your buildout, then provide a SQLAlchemy connection string::
 
     [buildout]
     ...
