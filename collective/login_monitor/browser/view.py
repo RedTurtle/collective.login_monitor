@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from collective.login_monitor import Session
@@ -31,7 +32,20 @@ class UsersLoginMonitorView(BrowserView):
             return
         if self._form.get('json'):
             return self._exportJSON()
+        if self._form.get('send'):
+            self._sendMessage()
+            self.request.response.redirect("%s/@@%s" % (self.context.absolute_url(),
+                                                        self.__name__))
+            return
         return self.index()
+
+    def _sendMessage(self):
+        # TODO
+        pass
+
+    def can_use_contact_form(self):
+        sm = getSecurityManager()
+        return sm.checkPermission('collective.login_monitor: contact users', self.context)
 
     def _exportCSV(self):
         """Write a CSV output"""

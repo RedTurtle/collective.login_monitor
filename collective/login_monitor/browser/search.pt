@@ -10,7 +10,7 @@
     <metal:main fill-slot="prefs_configlet_main">
     <tal:main-macro metal:define-macro="controlpanel">
                                     
-     <div id="users-login-monitor">
+     <div id="users-login-monitor" tal:define="can_use_contact_form view/can_use_contact_form">
          
      <a href=""
        id="setup-link"
@@ -26,10 +26,10 @@
          Search and monitor login operation taken by site users.
      </p>
      
-     <form id="login-logger-form" class="visualNoPrint" action="users-login-monitor" method="post"
+     <form id="login-logger-form" class="enableFormTabbing visualNoPrint" action="users-login-monitor" method="post"
            tal:attributes="action string:${context/absolute_url}/@@users-login-monitor">
-        <fieldset>
-            <legend i18n:translate="search_legend">Search or export logins</legend>
+        <fieldset id="search_fieldset">
+            <legend i18n:translate="search_legend" id="search_legend">Search/export logins</legend>
             <input type="hidden" name="search" value="1" />
             <script type="text/javascript">
             <!--
@@ -112,6 +112,24 @@
                 <input name="export" type="submit" class="context allowMultiSubmit" i18n:attributes="value" value="Export to CSV" />
             </div>
         </fieldset>
+        <fieldset id="mail_fieldset" tal:condition="can_use_contact_form">
+            <legend i18n:translate="mail_legend" id="mail_legend">Contact users</legend>
+			<p i18n:translate="contact_form_help">Use this form to send an email message to all users found by your search</p>
+            <div class="field">
+                <label for="subject" i18n:translate="">Subject</label><br />
+                <input type="text" id="subject" name="subject" value="" size="50"
+				       tal:attributes="value request/subject|nothing" />
+            </div>
+            <div class="field">
+                <label for="message" i18n:translate="">Message text</label><br />
+                <textarea id="message" name="message" rows="6"
+				          tal:content="request/message|nothing"></textarea>
+            </div>
+            <div class="field">
+                <input name="send" type="submit" class="context" i18n:attributes="value" value="Send message" />
+            </div>
+
+		</fieldset>
      </form>
 
      <tal:searching tal:condition="request/submit|nothing">

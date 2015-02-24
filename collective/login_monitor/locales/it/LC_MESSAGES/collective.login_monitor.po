@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 16:35+0000\n"
+"POT-Creation-Date: 2015-02-24 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -55,6 +55,10 @@ msgstr "Ultimo login nel periodo cercato"
 msgid "Login count"
 msgstr "Conteggio login"
 
+#: ../browser/search.pt:124
+msgid "Message text"
+msgstr "Testo del messaggio"
+
 #: ../profiles/default/controlpanel.xml
 msgid "Monitor user logins"
 msgstr "Monitor login utenti"
@@ -67,8 +71,16 @@ msgstr "Periodo"
 msgid "Search"
 msgstr "Cerca"
 
+#: ../browser/search.pt:129
+msgid "Send message"
+msgstr "Invia messaggio"
+
 msgid "Store and monitor login access to your site"
 msgstr "Memorizza e controlla i login degli utenti al sito"
+
+#: ../browser/search.pt:119
+msgid "Subject"
+msgstr "Oggetto"
 
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:8
@@ -80,9 +92,14 @@ msgid "Users login monitor"
 msgstr "Monitor login utenti"
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:209
+#: ../browser/view.py:239
 msgid "component_lookup_error"
 msgstr "Non posso connettermi al database. Prego verificane la configurazione"
+
+#. Default: "Use this form to send an email message to all users found by your search"
+#: ../browser/search.pt:117
+msgid "contact_form_help"
+msgstr "Usa questo modulo per inviare una e-mail a tutti gli utenti trovati dalla ricerca"
 
 #. Default: "Exclude elements found by search criteria. This means that will be shown users that didn't performed logins in the given range of dates."
 #: ../browser/search.pt:92
@@ -96,6 +113,11 @@ msgstr ""
 msgid "form_help"
 msgstr "Cerca e controlla le operazioni di login intraprese dagli utenti del sito."
 
+#. Default: "Contact users"
+#: ../browser/search.pt:116
+msgid "mail_legend"
+msgstr "Contatta utenti"
+
 #. Default: "Search didn't return any result value"
 #: ../browser/login_logger_macros.pt:34
 msgid "no_results"
@@ -106,10 +128,10 @@ msgstr "La ricerca non ha portato a nessun risultato"
 msgid "period_help"
 msgstr "Mostra gli accessi all'interno dell'intervallo seguente"
 
-#. Default: "Search or export logins"
+#. Default: "Search/export logins"
 #: ../browser/search.pt:32
 msgid "search_legend"
-msgstr "Cerca o esporta i login"
+msgstr "Cerca/esporta login"
 
 #. Default: "Search results"
 #: ../browser/login_logger_macros.pt:5

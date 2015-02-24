@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 16:35+0000\n"
+"POT-Creation-Date: 2015-02-24 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,10 @@ msgstr ""
 msgid "Login count"
 msgstr ""
 
+#: ../browser/search.pt:124
+msgid "Message text"
+msgstr ""
+
 #: ../profiles/default/controlpanel.xml
 msgid "Monitor user logins"
 msgstr ""
@@ -69,7 +73,15 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: ../browser/search.pt:129
+msgid "Send message"
+msgstr ""
+
 msgid "Store and monitor login access to your site"
+msgstr ""
+
+#: ../browser/search.pt:119
+msgid "Subject"
 msgstr ""
 
 #: ../browser/login_logger_macros.pt:8
@@ -81,8 +93,13 @@ msgid "Users login monitor"
 msgstr ""
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:209
+#: ../browser/view.py:239
 msgid "component_lookup_error"
+msgstr ""
+
+#. Default: "Use this form to send an email message to all users found by your search"
+#: ../browser/search.pt:117
+msgid "contact_form_help"
 msgstr ""
 
 #. Default: "Exclude elements found by search criteria. This means that will be shown users that didn't performed logins in the given range of dates."
@@ -95,6 +112,11 @@ msgstr ""
 msgid "form_help"
 msgstr ""
 
+#. Default: "Contact users"
+#: ../browser/search.pt:116
+msgid "mail_legend"
+msgstr ""
+
 #. Default: "Search didn't return any result value"
 #: ../browser/login_logger_macros.pt:34
 msgid "no_results"
@@ -105,7 +127,7 @@ msgstr ""
 msgid "period_help"
 msgstr ""
 
-#. Default: "Search or export logins"
+#. Default: "Search/export logins"
 #: ../browser/search.pt:32
 msgid "search_legend"
 msgstr ""

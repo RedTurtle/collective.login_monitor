@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from Products.CMFPlone.utils import getToolByName
 
@@ -15,4 +16,5 @@ def run_import_step(context, step):
 def upgrade_1000_to_1100(context):
     run_import_step(context, 'controlpanel')
 
-
+def upgrade_to_1200(context):
+    run_import_step(context, 'rolemap')

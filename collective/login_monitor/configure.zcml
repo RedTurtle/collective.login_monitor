@@ -12,6 +12,10 @@
       id="collective.login_monitor.MonitorUserPermission"
       title="collective.login_monitor: View logins"
       />
+   <permission
+      id="collective.login_monitor.ContactUserPermission"
+      title="collective.login_monitor: contact users"
+      />
 
    <subscriber
       for="*
@@ -43,5 +47,14 @@
       profile="collective.login_monitor:default"
       handler=".upgrades.upgrade_1000_to_1100"
       />
+  <genericsetup:upgradeStep
+      source="1100"
+      destination="1200"
+      title="Update permissions"
+      description="Updates new permission settings"
+      profile="collective.login_monitor:default"
+      handler=".upgrades.upgrade_to_1200"
+      />
+
 
 </configure>
