@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import json
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from collective.login_monitor import Session
@@ -20,15 +21,20 @@ class UsersLoginMonitorView(BrowserView):
         self.context = context
         self.request = request
         request.set('disable_border', True)
+        self._form = None
         self.last_query_size = 0
 
-    def __call__(self):
-        if self.request.form.get('export'):
+    def __call__(self, *args, **kwargs):
+        self._form = kwargs or self.request.form
+        if self._form.get('export'):
             self._exportCSV()
             return
+        if self._form.get('json'):
+            return self._exportJSON()
         return self.index()
 
     def _exportCSV(self):
+        """Write a CSV output"""
         translate = lambda text: translation_service.utranslate(
             msgid=text,
             domain="collective.login_monitor",
@@ -52,6 +58,22 @@ class UsersLoginMonitorView(BrowserView):
                                                   row.get('user_email'),
                                                   row.get('login_count'),
                                                   row.get('last_login_date'))).encode('utf-8'))
+
+    def _exportJSON(self):
+        """return an application/json output of the search"""
+        response = self.request.response
+        response.setHeader('Content-Type', 'application/json')
+        response.addHeader('Content-Disposition',
+                           'attachment;filename=login-report.json')
+        results = self.search_results()
+        output = []
+        for row in results:
+            output.append(dict(user_id=row.get('user_id'),
+                               user_fullname=row.get('user_fullname'),
+                               user_email=row.get('user_email'),
+                               login_count=row.get('login_count'),
+                               last_login_date=row.get('last_login_date').strftime('%Y-%m/%d %H:%M:%S')))
+        return json.dumps(output)
 
     def default_start_date(self, canonical=False):
         today = date.today()
@@ -85,7 +107,7 @@ class UsersLoginMonitorView(BrowserView):
 
     def _load_exclude_users(self, site_id):
         """Load user ids from login in the range. Used for performing negative logic"""
-        exclude = self.request.form.get('exclude', '')
+        exclude = self._form.get('exclude', '')
         if exclude:
             results = Session.query(distinct(LoginRecord.user_id)).filter(
                             LoginRecord.plone_site_id==site_id,
@@ -180,8 +202,8 @@ class UsersLoginMonitorView(BrowserView):
 
     def _prepare_interval(self):
         # we don't have strptime on Python 2.4
-        sy,sm,sd = self.request.form.get('start_date').split('-')
-        ey,em,ed = self.request.form.get('end_date').split('-')
+        sy,sm,sd = self._form.get('start_date').split('-')
+        ey,em,ed = self._form.get('end_date').split('-')
         self._start = datetime(int(sy), int(sm), int(sd))
         self._end = datetime(int(ey), int(em), int(ed), 23, 59, 59)
 
@@ -189,11 +211,11 @@ class UsersLoginMonitorView(BrowserView):
         """Search results"""
         self._prepare_interval()
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
-        user_id = self.request.form.get('user_id', '')
+        user_id = self._form.get('user_id', '')
         try:
             if user_id:
                 return self._query_users(user_id, portal.getId())
-            group_id = self.request.form.get('group_id', '')
+            group_id = self._form.get('group_id', '')
             if group_id:
                 pas = getToolByName(self.context, 'acl_users')
                 group = pas.getGroupById(group_id)

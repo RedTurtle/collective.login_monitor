@@ -4,6 +4,11 @@ Changelog
 0.4 (unreleased)
 ----------------
 
+- Added an (hidden) export to JSON feature. 3rd party add-ons can use this for performing
+  operation of search results
+  [keul]
+- Search view is now "callable" with custom parameters
+  [keul]
 - Added a negative search filter, for looking for users who didn't logged in
   in the given range.
   *Please note* that users must still be indexed by the table (a user who never logged in
