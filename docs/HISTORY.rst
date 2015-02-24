@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.3.2 (unreleased)
-------------------
+0.4 (unreleased)
+----------------
 
-- Nothing changed yet.
+- Fixed errors in foreign key definition on schema models
+  [keul]
 
 
 0.3.1 (2014-11-06)
