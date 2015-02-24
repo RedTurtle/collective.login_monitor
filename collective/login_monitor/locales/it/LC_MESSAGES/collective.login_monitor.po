@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 13:52+0000\n"
+"POT-Creation-Date: 2015-02-24 16:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.login_monitor\n"
 
-#: ../browser/search.pt:88
+#: ../browser/search.pt:103
 msgid "All the groups"
 msgstr "Tutti i gruppi"
 
@@ -22,21 +22,33 @@ msgstr "Tutti i gruppi"
 msgid "E-mail"
 msgstr "Indirizzo posta elettronica"
 
-#: ../browser/search.pt:97
+#: ../browser/search.pt:91
+msgid "Exclude"
+msgstr "Escludi"
+
+#: ../browser/search.pt:112
 msgid "Export to CSV"
 msgstr "Esporta in CSV"
+
+#: ../browser/search.pt:53
+msgid "Filter by user id"
+msgstr "Filtra per ID utente"
 
 #: ../browser/login_logger_macros.pt:9
 msgid "Full Name"
 msgstr "Nome"
 
-#: ../browser/search.pt:83
+#: ../browser/search.pt:98
 msgid "Group"
 msgstr "Gruppo"
 
-#: ../browser/login_logger_macros.pt:12
+#: ../browser/login_logger_macros.pt:13
 msgid "Last login date"
 msgstr "Ultimo login"
+
+#: ../browser/login_logger_macros.pt:14
+msgid "Last login in the search range"
+msgstr "Ultimo login nel periodo cercato"
 
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:11
@@ -47,11 +59,11 @@ msgstr "Conteggio login"
 msgid "Monitor user logins"
 msgstr "Monitor login utenti"
 
-#: ../browser/search.pt:52
+#: ../browser/search.pt:58
 msgid "Period"
 msgstr "Periodo"
 
-#: ../browser/search.pt:96
+#: ../browser/search.pt:111
 msgid "Search"
 msgstr "Cerca"
 
@@ -61,16 +73,23 @@ msgstr "Memorizza e controlla i login degli utenti al sito"
 #. Default: "collective.login_monitor"
 #: ../browser/login_logger_macros.pt:8
 msgid "User ID"
-msgstr "Id utente"
+msgstr "ID utente"
 
 #: ../browser/search.pt:23
 msgid "Users login monitor"
 msgstr "Monitor login utenti"
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:159
+#: ../browser/view.py:209
 msgid "component_lookup_error"
 msgstr "Non posso connettermi al database. Prego verificane la configurazione"
+
+#. Default: "Exclude elements found by search criteria. This means that will be shown users that didn't performed logins in the given range of dates."
+#: ../browser/search.pt:92
+msgid "exclude_help"
+msgstr ""
+"Escludi elementi trovati dai criteri di ricerca.\n"
+"Questo significa che saranno mostrati utenti che non hanno effettuato un login nel periodo selezionato."
 
 #. Default: "Search and monitor login operation taken by site users."
 #: ../browser/search.pt:25
@@ -78,12 +97,12 @@ msgid "form_help"
 msgstr "Cerca e controlla le operazioni di login intraprese dagli utenti del sito."
 
 #. Default: "Search didn't return any result value"
-#: ../browser/login_logger_macros.pt:31
+#: ../browser/login_logger_macros.pt:34
 msgid "no_results"
 msgstr "La ricerca non ha portato a nessun risultato"
 
 #. Default: "Show accesses inside the following range"
-#: ../browser/search.pt:53
+#: ../browser/search.pt:59
 msgid "period_help"
 msgstr "Mostra gli accessi all'interno dell'intervallo seguente"
 
@@ -98,7 +117,7 @@ msgid "search_results"
 msgstr "Risultati della ricerca"
 
 #. Default: "Show users from the selected group. Select \"All the groups\" to apply no filters."
-#: ../browser/search.pt:84
+#: ../browser/search.pt:99
 msgid "show_groups_help"
 msgstr "Mostra gli utenti del gruppo selezionato. Mantieni \"tutti i gruppi\" per non applicare filtri."
 

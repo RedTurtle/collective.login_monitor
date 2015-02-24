@@ -9,7 +9,10 @@
                    <th i18n:translate="">Full Name</th>
                    <th i18n:translate="">E-mail</th>
                    <th i18n:translate="">Login count</th>
-				   <th i18n:translate="">Last login date</th>
+				   <th>
+					   	<span tal:omit-tag="" i18n:translate="">Last login date</span>
+						<div class="discreet" i18n:translate="">Last login in the search range</div>
+				   </th>
              </thead>
              <tbody>
                    <tr tal:repeat="item items">

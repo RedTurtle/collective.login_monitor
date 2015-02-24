@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 13:52+0000\n"
+"POT-Creation-Date: 2015-02-24 16:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.login_monitor\n"
 
-#: ../browser/search.pt:88
+#: ../browser/search.pt:103
 msgid "All the groups"
 msgstr ""
 
@@ -25,20 +25,32 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: ../browser/search.pt:97
+#: ../browser/search.pt:91
+msgid "Exclude"
+msgstr ""
+
+#: ../browser/search.pt:112
 msgid "Export to CSV"
+msgstr ""
+
+#: ../browser/search.pt:53
+msgid "Filter by user id"
 msgstr ""
 
 #: ../browser/login_logger_macros.pt:9
 msgid "Full Name"
 msgstr ""
 
-#: ../browser/search.pt:83
+#: ../browser/search.pt:98
 msgid "Group"
 msgstr ""
 
-#: ../browser/login_logger_macros.pt:12
+#: ../browser/login_logger_macros.pt:13
 msgid "Last login date"
+msgstr ""
+
+#: ../browser/login_logger_macros.pt:14
+msgid "Last login in the search range"
 msgstr ""
 
 #: ../browser/login_logger_macros.pt:11
@@ -49,11 +61,11 @@ msgstr ""
 msgid "Monitor user logins"
 msgstr ""
 
-#: ../browser/search.pt:52
+#: ../browser/search.pt:58
 msgid "Period"
 msgstr ""
 
-#: ../browser/search.pt:96
+#: ../browser/search.pt:111
 msgid "Search"
 msgstr ""
 
@@ -69,8 +81,13 @@ msgid "Users login monitor"
 msgstr ""
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:159
+#: ../browser/view.py:209
 msgid "component_lookup_error"
+msgstr ""
+
+#. Default: "Exclude elements found by search criteria. This means that will be shown users that didn't performed logins in the given range of dates."
+#: ../browser/search.pt:92
+msgid "exclude_help"
 msgstr ""
 
 #. Default: "Search and monitor login operation taken by site users."
@@ -79,12 +96,12 @@ msgid "form_help"
 msgstr ""
 
 #. Default: "Search didn't return any result value"
-#: ../browser/login_logger_macros.pt:31
+#: ../browser/login_logger_macros.pt:34
 msgid "no_results"
 msgstr ""
 
 #. Default: "Show accesses inside the following range"
-#: ../browser/search.pt:53
+#: ../browser/search.pt:59
 msgid "period_help"
 msgstr ""
 
@@ -99,7 +116,7 @@ msgid "search_results"
 msgstr ""
 
 #. Default: "Show users from the selected group. Select \"All the groups\" to apply no filters."
-#: ../browser/search.pt:84
+#: ../browser/search.pt:99
 msgid "show_groups_help"
 msgstr ""
 

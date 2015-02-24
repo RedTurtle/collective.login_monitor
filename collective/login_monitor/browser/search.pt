@@ -27,7 +27,7 @@
      </p>
      
      <form id="login-logger-form" class="visualNoPrint" action="users-login-monitor" method="post"
-           tal:attributes="action string:${context/absolute_url}/users-login-monitor">
+           tal:attributes="action string:${context/absolute_url}/@@users-login-monitor">
         <fieldset>
             <legend i18n:translate="search_legend">Search or export logins</legend>
             <input type="hidden" name="search" value="1" />
@@ -48,6 +48,12 @@
             })(jQuery);
             //-->
             </script>
+			
+            <div class="field">
+                <label for="user_id" i18n:translate="">Filter by user id</label><br />
+                <input type="text" id="user_id" name="user_id" value="" size="50"
+				       tal:attributes="value request/user_id|nothing" />
+            </div>
             <div class="field">
                 <label for="start" i18n:translate="">Period</label>
                 <div class="formHelp" i18n:translate="period_help">
@@ -78,6 +84,15 @@
                        size="10"
                        maxlength="10"
                        />
+            </div>
+            <div class="field">
+                <input type="checkbox" id="exclude" name="exclude" value="exclude"
+				       tal:attributes="checked python:request.get('exclude')=='exclude'" />
+                <label for="exclude" i18n:translate="">Exclude</label>
+                <div class="formHelp" i18n:translate="exclude_help">
+                    Exclude elements found by search criteria.
+					This means that will be shown users that didn't performed logins in the given range of dates.
+                </div>
             </div>
             <div class="field">
                 <label for="group_id" i18n:translate="">Group</label>

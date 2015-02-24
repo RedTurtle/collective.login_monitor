@@ -6,10 +6,11 @@ from collective.login_monitor import Session
 from collective.login_monitor import messageFactory as _
 from collective.login_monitor.models import LoginRecord
 from datetime import date, datetime, timedelta
-from sqlalchemy import and_
-from sqlalchemy import func
+from sqlalchemy import and_, or_, not_
+from sqlalchemy import func, distinct
 from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
+
 
 class UsersLoginMonitorView(BrowserView):
     
@@ -82,6 +83,17 @@ class UsersLoginMonitorView(BrowserView):
             if not group['id'] in self.ignored_groups:
                 yield group
 
+    def _load_exclude_users(self, site_id):
+        """Load user ids from login in the range. Used for performing negative logic"""
+        exclude = self.request.form.get('exclude', '')
+        if exclude:
+            results = Session.query(distinct(LoginRecord.user_id)).filter(
+                            LoginRecord.plone_site_id==site_id,
+                            LoginRecord.timestamp>=self._start,
+                            LoginRecord.timestamp<=self._end).all()
+            return [user[0] for user in results]
+        return None
+
     def _get_results(self, results):
         acl_users = getToolByName(self.context, 'acl_users')
         self.last_query_size = len(results)
@@ -103,31 +115,67 @@ class UsersLoginMonitorView(BrowserView):
         return processed
 
     def _query_users(self, query, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
-                                func.max(LoginRecord.timestamp)) \
-                .filter(and_(LoginRecord.user_id.startswith(query),
-                             LoginRecord.plone_site_id==site_id,
-                             LoginRecord.timestamp>=self._start,
-                             LoginRecord.timestamp<=self._end)).order_by(LoginRecord.user_id).all()
+        exclude_ids = self._load_exclude_users(site_id)
+        if not exclude_ids:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(and_(LoginRecord.user_id.startswith(query),
+                                 LoginRecord.plone_site_id==site_id,
+                                 LoginRecord.timestamp>=self._start,
+                                 LoginRecord.timestamp<=self._end)) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
+        else:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(and_(LoginRecord.user_id.startswith(query),
+                                 LoginRecord.plone_site_id==site_id,
+                                 not_(LoginRecord.user_id.in_(exclude_ids)))) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
         return self._get_results(results)
 
     def _load_users(self, user_ids, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
-                                func.max(LoginRecord.timestamp)) \
-                .filter(and_(LoginRecord.user_id.in_(user_ids),
-                             LoginRecord.plone_site_id==site_id,
-                             LoginRecord.timestamp>=self._start,
-                             LoginRecord.timestamp<=self._end)).order_by(LoginRecord.user_id).all()
+        """Load data from all users in the set (commonly taken from groups member ids)"""
+        exclude_ids = self._load_exclude_users(site_id)
+        if not exclude_ids:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(and_(LoginRecord.user_id.in_(user_ids),
+                                 LoginRecord.plone_site_id==site_id,
+                                 LoginRecord.timestamp>=self._start,
+                                 LoginRecord.timestamp<=self._end)) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
+        else:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(and_(LoginRecord.user_id.in_(user_ids),
+                                 LoginRecord.plone_site_id==site_id,
+                                 not_(LoginRecord.user_id.in_(exclude_ids)))
+                                 ) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
+            import pdb;pdb.set_trace()
         return self._get_results(results)
 
     def _all_users(self, site_id):
-        results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
-                                func.max(LoginRecord.timestamp)) \
-                .filter(and_(LoginRecord.plone_site_id==site_id,
-                             LoginRecord.timestamp>=self._start,
-                             LoginRecord.timestamp<=self._end)).group_by(
-                                 LoginRecord.user_id,
-                                 LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
+        exclude_ids = self._load_exclude_users(site_id)
+        if not exclude_ids:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(LoginRecord.plone_site_id==site_id,
+                            LoginRecord.timestamp>=self._start,
+                            LoginRecord.timestamp<=self._end) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()
+        else:
+            results = Session.query(LoginRecord.user_id, func.count(LoginRecord.user_id),
+                                    func.max(LoginRecord.timestamp)) \
+                    .filter(LoginRecord.plone_site_id==site_id,
+                            not_(LoginRecord.user_id.in_(exclude_ids))) \
+                    .group_by(LoginRecord.user_id,
+                              LoginRecord.plone_site_id).order_by(LoginRecord.user_id).all()            
         return self._get_results(results)
 
     def _prepare_interval(self):

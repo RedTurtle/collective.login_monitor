@@ -4,6 +4,13 @@ Changelog
 0.4 (unreleased)
 ----------------
 
+- Added a negative search filter, for looking for users who didn't logged in
+  in the given range.
+  *Please note* that users must still be indexed by the table (a user who never logged in
+  will not be found)
+  [keul]
+- Added search filter by user id
+  [keul]
 - Added new information about last login date of the user
   [keul]
 - Fixed errors in foreign key definition on schema models
