@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 17:34+0000\n"
+"POT-Creation-Date: 2015-02-26 12:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,7 @@ msgid "Users login monitor"
 msgstr ""
 
 #. Default: "Could not connect to the database engine. Please check your configuration"
-#: ../browser/view.py:239
+#: ../browser/view.py:280
 msgid "component_lookup_error"
 msgstr ""
 
@@ -112,14 +112,29 @@ msgstr ""
 msgid "form_help"
 msgstr ""
 
+#. Default: "Cannot send messages. Check mailhost configuration."
+#: ../browser/view.py:68
+msgid "mail_configuration_error"
+msgstr ""
+
 #. Default: "Contact users"
 #: ../browser/search.pt:116
 msgid "mail_legend"
 msgstr ""
 
+#. Default: "Message sent to $count recipients"
+#: ../browser/view.py:74
+msgid "mail_sent"
+msgstr ""
+
 #. Default: "Search didn't return any result value"
 #: ../browser/login_logger_macros.pt:34
 msgid "no_results"
+msgstr ""
+
+#. Default: "Your search doesn't find any valid email address"
+#: ../browser/view.py:61
+msgid "no_users_found"
 msgstr ""
 
 #. Default: "Show accesses inside the following range"
@@ -135,6 +150,11 @@ msgstr ""
 #. Default: "Search results"
 #: ../browser/login_logger_macros.pt:5
 msgid "search_results"
+msgstr ""
+
+#. Default: "You must provide a subject and a text message for the mail to be sent"
+#: ../browser/view.py:54
+msgid "send_message_missing_data"
 msgstr ""
 
 #. Default: "Show users from the selected group. Select \"All the groups\" to apply no filters."

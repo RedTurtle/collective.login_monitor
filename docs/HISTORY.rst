@@ -4,8 +4,7 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- **TO BE FINISHED**
-  Added a contact form, for sending ad email message to all users found by the search
+- Added a contact form, for sending ad email message to all users found by the search
   [keul]
 - Added an (hidden) export to JSON feature. 3rd party add-ons can use this for performing
   operation of search results

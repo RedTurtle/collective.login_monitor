@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+from AccessControl import Unauthorized
 from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -8,6 +9,7 @@ from collective.login_monitor import Session
 from collective.login_monitor import messageFactory as _
 from collective.login_monitor.models import LoginRecord
 from datetime import date, datetime, timedelta
+from plone.memoize.view import memoize
 from sqlalchemy import and_, or_, not_
 from sqlalchemy import func, distinct
 from zope.component import getMultiAdapter
@@ -33,16 +35,49 @@ class UsersLoginMonitorView(BrowserView):
         if self._form.get('json'):
             return self._exportJSON()
         if self._form.get('send'):
-            self._sendMessage()
-            self.request.response.redirect("%s/@@%s" % (self.context.absolute_url(),
-                                                        self.__name__))
-            return
+            if not self.can_use_contact_form():
+                raise Unauthorized("You can't use the contact user feature")
+            send_result = self._sendMessage()
+            if send_result:
+                self.request.response.redirect("%s/@@%s" % (self.context.absolute_url(),
+                                                            self.__name__))
+                return
         return self.index()
 
     def _sendMessage(self):
-        # TODO
-        pass
+        """Send en email message to found email address"""
+        subject = self._form.get('subject')
+        message = self._form.get('message')
+        results = self.search_results()
+        plone_utils = getToolByName(self.context, 'plone_utils')
+        if not subject or not message:
+            plone_utils.addPortalMessage(_('send_message_missing_data',
+                                           default=u"You must provide a subject and a text message "
+                                                   u"for the mail to be sent"),
+                                         type="error")
+            return False
+        results = [x['user_email'] for x in results if x['user_email']]
+        if not results:
+            plone_utils.addPortalMessage(_('no_users_found',
+                                           default=u"Your search doesn't find any valid email address"),
+                                         type="error")
+            return False
+        mail_host = getToolByName(self.context, 'MailHost')
+        mfrom = getToolByName(self.context, 'portal_url').getPortalObject().getProperty('email_from_address')
+        if not mfrom:
+            plone_utils.addPortalMessage(_('mail_configuration_error',
+                                           default=u"Cannot send messages. Check mailhost configuration."),
+                                         type="error")
+            return False
+        for email in results:
+            mail_host.secureSend(message, mto=email, mfrom=mfrom, subject=subject)
+        plone_utils.addPortalMessage(_('mail_sent',
+                                       default=u"Message sent to $count recipients",
+                                       mapping={'count': len(results)}),
+                                     type="info")
+        return True
 
+    @memoize
     def can_use_contact_form(self):
         sm = getSecurityManager()
         return sm.checkPermission('collective.login_monitor: contact users', self.context)
