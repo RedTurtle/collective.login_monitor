@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2015-08-21)
 ----------------
 
 - Added a contact form, for sending ad email message to all users found by the search
