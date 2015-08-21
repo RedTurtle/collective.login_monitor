@@ -10,7 +10,7 @@ from collective.login_monitor import messageFactory as _
 from collective.login_monitor.models import LoginRecord
 from datetime import date, datetime, timedelta
 from plone.memoize.view import memoize
-from sqlalchemy import and_, or_, not_
+from sqlalchemy import and_, not_
 from sqlalchemy import func, distinct
 from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
