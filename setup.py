@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.4.1.dev0'
+version = '0.4.1modena'
 
 setup(name='collective.login_monitor',
       version=version,
@@ -31,7 +31,6 @@ setup(name='collective.login_monitor',
           'setuptools',
           'Products.CMFPlone',
           'SQLAlchemy',
-          'collective.js.jqueryui',
           'z3c.saconfig',
       ],
       entry_points="""

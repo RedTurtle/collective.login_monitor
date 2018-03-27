@@ -2,6 +2,5 @@
 <metadata>
   <version>1200</version>
   <dependencies>
-    <dependency>profile-collective.js.jqueryui:default</dependency>
   </dependencies>
 </metadata>
