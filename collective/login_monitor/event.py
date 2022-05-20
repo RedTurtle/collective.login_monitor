@@ -16,17 +16,16 @@ def register_event(user, event):
     try:
         if Session.query(User).filter(and_(User.user_id == user_id,
                                            User.plone_site_id == site_id)).count() == 0:
-            user = User(user_id.decode('utf-8'), site_id.decode('utf-8'))
+            user = User(user_id, site_id)
             Session.add(user)
         else:
             user = Session.query(User).filter(and_(User.user_id == user_id,
                                                    User.plone_site_id == site_id)).one()
 
         timestamp = datetime.now()
-        record = LoginRecord(user_id.decode('utf-8'), site_id.decode('utf-8'), timestamp)
+        record = LoginRecord(user_id, site_id, timestamp)
         Session.add(record)
     except ConflictError:
         raise
     except Exception:
-        logger.error("Unable to store login informations")
-        print traceback.format_exc()
+        logger.error(f"Unable to store login informations: {traceback.format_exc()}" )
