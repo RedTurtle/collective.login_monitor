@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.4.1.dev0'
+version = '1.0.0.dev0'
 
 setup(name='collective.login_monitor',
       version=version,
@@ -11,13 +11,17 @@ setup(name='collective.login_monitor',
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: 4.0",
-        "Framework :: Plone :: 4.1",
-        "Framework :: Plone :: 4.2",
-        "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 5.2",
         "Programming Language :: Python",
-        ],
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+      ],    
       keywords='plone plonegov login user access monitor',
       author='RedTurtle Technology',
       author_email='sviluppoplone@redturtle.it',
@@ -31,7 +35,6 @@ setup(name='collective.login_monitor',
           'setuptools',
           'Products.CMFPlone',
           'SQLAlchemy',
-          'collective.js.jqueryui',
           'z3c.saconfig',
       ],
       entry_points="""

@@ -15,6 +15,7 @@ from sqlalchemy import func, distinct
 from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 
+from plone.api import portal
 
 class UsersLoginMonitorView(BrowserView):
     
@@ -49,6 +50,7 @@ class UsersLoginMonitorView(BrowserView):
         subject = self._form.get('subject')
         message = self._form.get('message')
         results = self.search_results()
+
         plone_utils = getToolByName(self.context, 'plone_utils')
         if not subject or not message:
             plone_utils.addPortalMessage(_('send_message_missing_data',
@@ -56,21 +58,21 @@ class UsersLoginMonitorView(BrowserView):
                                                    u"for the mail to be sent"),
                                          type="error")
             return False
+
         results = [x['user_email'] for x in results if x['user_email']]
         if not results:
             plone_utils.addPortalMessage(_('no_users_found',
                                            default=u"Your search doesn't find any valid email address"),
                                          type="error")
             return False
-        mail_host = getToolByName(self.context, 'MailHost')
-        mfrom = getToolByName(self.context, 'portal_url').getPortalObject().getProperty('email_from_address')
-        if not mfrom:
-            plone_utils.addPortalMessage(_('mail_configuration_error',
-                                           default=u"Cannot send messages. Check mailhost configuration."),
-                                         type="error")
-            return False
+
         for email in results:
-            mail_host.secureSend(message, mto=email, mfrom=mfrom, subject=subject)
+            portal.send_email(
+                recipient=email,
+                subject=subject,
+                body=message
+            )
+
         plone_utils.addPortalMessage(_('mail_sent',
                                        default=u"Message sent to $count recipients",
                                        mapping={'count': len(results)}),
