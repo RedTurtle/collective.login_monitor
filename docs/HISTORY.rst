@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.4.1 (unreleased)
+1.0.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- major refactoring for python 3.8 and plone 5.2.
+  [reflab]
 
 
 0.4 (2015-08-21)
