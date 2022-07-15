@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.0.dev0'
+version = '1.0.0'
 
 setup(name='collective.login_monitor',
       version=version,
